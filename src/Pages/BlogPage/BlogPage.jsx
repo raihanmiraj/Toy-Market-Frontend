@@ -44,19 +44,7 @@ const BlogPage = ({setTitle}) => {
  {blogData.map(e=><BlogCard question={e.question} answer={e.answer}/>  )}
  </>}
    
- {/* <Pdf targetRef={ref} filename="code-example.pdf">
-        {({ toPdf }) => 
-        
-        <div className='flex justify-center items-center'>
-
-<button className='px-6 py-3 rounded-lg bg-green-700 text-white font-semibold' onClick={toPdf}>Generate Pdf</button>
-        </div>
-
-       
-        
-        
-        }
-      </Pdf> */}
+  
   </div>
 </>
 

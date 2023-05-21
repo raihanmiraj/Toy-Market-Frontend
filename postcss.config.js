@@ -1,6 +1,5 @@
 export default {
-  plugins: {
-    // require('flowbite/plugin'),
+  plugins: { 
     tailwindcss: {},
     autoprefixer: {},
   },
