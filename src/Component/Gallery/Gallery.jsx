@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import GalleryCard from './GalleryCard';
 import Spinner from '../Spinner/Spinner';
-import AOS from "aos";
-import "aos/dist/aos.css";
+
 const Gallery = () => {
     const [loading, setLoading] = useState(true);
     const [galleryData, setGalleryData] = useState(null);
     useEffect(() => {
-      AOS.init();
+
        if(loading){
         axios.get("/gallery")
         .then(response=>{
