@@ -3,6 +3,7 @@ import { useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
 import Header from '../../Layout/Header/Header';
 import Gallery from '../../Component/Gallery/Gallery';
 import ShopByCategory from '../../Component/ShopByCategory/ShopByCategory';
+import TeamSection from '../../Component/TeamSection/TeamSection';
 const HomePage = ({setTitle}) => {
   const [loading, setLoading] = useState(true)
 
@@ -24,6 +25,7 @@ const HomePage = ({setTitle}) => {
 {/* gallery section */}
 <Gallery/>
 <ShopByCategory/>
+ 
 
     </>
 
