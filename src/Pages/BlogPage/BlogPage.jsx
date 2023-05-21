@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'; 
 import { useLoaderData } from 'react-router-dom';
 import Spinner from '../../Component/Spinner/Spinner';
+import axios from 'axios';
+import BlogCard from '../../Component/BlogCard/BlogCard';
  
  
 
@@ -8,7 +10,7 @@ import Spinner from '../../Component/Spinner/Spinner';
 const ref = React.createRef();
  
       
-const BlogPage = () => {
+const BlogPage = ({setTitle}) => {
   
  
  
@@ -18,19 +20,13 @@ const BlogPage = () => {
     
     useEffect(() => {
        if(loading){
-       
- 
-
-
- 
-  Promise.all([blogDataLoad ])
-  .then(values => {
-    setBlogData(values[0].data)
+    axios.get("/blog")
+    .then(response=>{
+      setBlogData(response.data)
       setLoading(false)
-  })
-   
- 
-      }
+    })
+
+   }
      
       
     
@@ -39,7 +35,7 @@ const BlogPage = () => {
         <>
      
 
-            <div ref={ref} className="max-w-screen-xl mx-auto px-5 sm:px-10 md:px-16 relative  mt-12 ">
+            <div ref={ref} className="max-w-screen-xl mx-auto px-5 sm:px-10 md:px-16 relative  mt-20 ">
     
 
  {loading?<>

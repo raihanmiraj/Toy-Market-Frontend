@@ -4,8 +4,9 @@ import axios from 'axios';
 import ShopCard from '../../Component/ShopByCategory/ShopCard';
 import { AuthContext } from '../../Provider/AuthContextProvider';
 import {Link} from 'react-router-dom'
+import Spinner from '../../Component/Spinner/Spinner';
 
-const MyToys = () => {
+const MyToys = ({setTitle}) => {
     const  { registerUser, user, logOut, loginUser,isLogged,setIsLogged }  = useContext(AuthContext);
     const  { toastPush}  = useContext(AuthContext);
 
@@ -18,6 +19,7 @@ const MyToys = () => {
     
     useEffect(() => {
         if (loading && user) {
+          setTitle("My Toy")
             axios.get(`/mytoys/${user.email}`)
                 .then(response => {
                     let data = response.data
@@ -109,7 +111,9 @@ const MyToys = () => {
     
 
 
-    {loading ? <></> : <>
+    {loading ? <>
+    <Spinner/>
+    </> : <>
                         {renderData.map(e => {
 
 return <>

@@ -3,7 +3,8 @@ import ShopCard from '../../Component/ShopByCategory/ShopCard';
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-const AllToys = () => {
+import Spinner from '../../Component/Spinner/Spinner';
+const AllToys = ({setTitle}) => {
     const [loading, setLoading] = useState(true)
     const [renderData, setRenderData] = useState(null);
     const [toysData, setToysData] = useState(null)
@@ -14,6 +15,7 @@ const AllToys = () => {
  
     
     useEffect(() => {
+        setTitle("All Toy")
         setLoading(true)
         if(search){
             
@@ -78,7 +80,9 @@ const AllToys = () => {
 
 
                 <div className='grid grid-cols-4 gap-6 '>
-                    {loading ? <></> : <>
+                    {loading ? <>
+                    <Spinner/>
+                    </> : <>
                         {renderData.map(e => {
                             return <ShopCard
                                 key={e._id}

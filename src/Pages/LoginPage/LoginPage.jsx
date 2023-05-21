@@ -9,11 +9,14 @@ import { Link } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 import Header from '../../Layout/Header/Header';
-const LoginPage = () => {
+import { useEffect } from 'react';
+const LoginPage = ({setTitle}) => {
 
   const [message , setMessage] = useState("");
    
- 
+ useEffect(() => {
+  setTitle("Login")
+ }, []);
   const auth = getAuth(app); 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -66,6 +69,7 @@ const LoginPage = () => {
       <p className='text-red-600'> {message}</p>
       <button className="btn btn-primary">Login</button>
       <a href="#">Forgot Password?</a>
+      <a href="#">If you've no account <Link to="/register" className='text-blue-800'>Create One</Link> </a>
     </form>
     <div className="grid grid-cols-2 gap-4 text-black text-[10px] md:text-sm">
    {/* <LoginWithFacebook/>

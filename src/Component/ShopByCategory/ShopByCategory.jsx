@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import ShopCard from './ShopCard';
 import axios from 'axios';
+import Spinner from '../Spinner/Spinner';
+ 
 
 const ShopByCategory = () => {
     const [loading, setLoading] = useState(true)
@@ -38,10 +40,12 @@ const ShopByCategory = () => {
         }
     }, []);
     const handleCategory = (id) => {
+        setLoading(true)
         setShowCategory(id)
         console.log(toysData)
         console.log(toysData.filter(e => e.category == id))
         setRenderData(toysData.filter(e => e.category == id))
+        setLoading(false)
     }
     return (
         <>
@@ -49,7 +53,7 @@ const ShopByCategory = () => {
             <h1 className='text-4xl font-bold text-center'>Shop By Category</h1>
 
 <div className='flex justify-center'>
-    <p className='w-[60%] text-center font-semibold'>
+    <p className='w-[90%] md:w-[60%] text-center font-semibold'>
     The toy car is a stylish and durable miniature replica of a real car, designed for endless fun and imaginative play. Its vibrant colors and realistic details make it perfect for zooming around on any surface, providing hours of exciting adventures.
     </p>
 </div>
@@ -57,13 +61,15 @@ const ShopByCategory = () => {
                 <div className="tabs tabs-boxed">
                                     {
                         category.map(e => {
-                            return <button  key={e.id} onClick={() => handleCategory(e.id)} id={e.id} className={`tab tab-lg ${e.id == showCategory && "tab-active"}`}>{e.name}</button>
+                            return <button  key={e.id} onClick={() => handleCategory(e.id)} id={e.id} className={`tab tab-lg ${e.id == showCategory && "bg-[#406147] text-white"}`}>{e.name}</button>
                         })
                     }
                 </div>
 
-                <div className='grid grid-cols-4 gap-6'>
-                    {loading ? <></> : <>
+                <div className='grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mx-3 md:mx-[10%]'>
+                    {loading ? <>
+                    <Spinner/>
+                    </> : <>
                         {renderData.map(e => {
                             return <ShopCard
                                 key={e._id}

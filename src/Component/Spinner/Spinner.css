@@ -5,7 +5,8 @@
 	height: 2.5em;
 	border: 0.2em solid transparent;
 	/* border-color: #eee; */
-	border-top-color: #ec0000;
+	border-top-color: #406147;
+	
 	border-radius: 50%;
 	animation: loadingspin 1s linear infinite;
 }

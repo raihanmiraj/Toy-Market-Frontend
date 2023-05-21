@@ -3,7 +3,7 @@ import React, { useContext, useState ,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthContextProvider';
  
-const UpdateToyPage = () => {
+const UpdateToyPage = ({setTitle}) => {
   const [loading, setLoading] = useState(true);
   const [toyData, setToyData] = useState(null);
   const [message, setMessage] = useState(null);
@@ -11,6 +11,7 @@ const UpdateToyPage = () => {
   const  { toastPush}  = useContext(AuthContext);
    const {id} = useParams();
     useEffect(() => {
+      setTitle("Update Toy")
        axios.get(`/toy/${id}`)
        .then(response =>{
         setToyData(response.data)

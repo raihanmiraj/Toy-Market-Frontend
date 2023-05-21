@@ -3,12 +3,13 @@ import { useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
 import Header from '../../Layout/Header/Header';
 import Gallery from '../../Component/Gallery/Gallery';
 import ShopByCategory from '../../Component/ShopByCategory/ShopByCategory';
-const HomePage = () => {
+const HomePage = ({setTitle}) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (loading) {
-
+      setTitle("Homepage")
+      setLoading(false)
     }
 
 

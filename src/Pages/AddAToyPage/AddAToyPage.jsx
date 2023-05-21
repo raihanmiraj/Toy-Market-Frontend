@@ -6,13 +6,14 @@ import { AuthContext } from '../../Provider/AuthContextProvider';
  
   
 
-const AddAToyPage = () => {
+const AddAToyPage = ({setTitle}) => {
     const [loading, setLoading] = useState(true);
     const [toyData, setToyData] = useState(null);
     const [message, setMessage] = useState(null);
     const [progresssending, setProgresssending] = useState(false);
     const  { user, toastPush}  = useContext(AuthContext);
      useEffect(() => {
+      setTitle("Add a Toy")
         setToyData({...toyData, seller:user.displayName, selleremail:user.email})
         setLoading(false)
       }, []);

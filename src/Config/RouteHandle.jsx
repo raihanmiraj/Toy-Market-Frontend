@@ -19,17 +19,20 @@ import AllToys from '../Pages/AllToys/AllToys';
 import MyToys from '../Pages/MyToys/MyToys';
 import UpdateToyPage from '../Pages/UpdateToyPage/UpdateToyPage';
 import AddAToyPage from '../Pages/AddAToyPage/AddAToyPage';
+import SingleToy from '../Pages/SingleToy/SingleToy';
 const RouteHandle = () => {
    const  { registerUser, user, logOut, loginUser,isLogged,setIsLogged }  = useContext(AuthContext);
- 
+ const setTitle = (title)=>{
+ document.title = `KidSport | ${title}` 
+ }
     const router = createBrowserRouter([
         {
           path: "/",
-          element: <Layout/>,
+          element: <Layout setTitle={setTitle} />,
               children: [
             {
               path: "/",
-              element: <HomePage />,
+              element: <HomePage   setTitle={setTitle} />,
              },
 
              {
@@ -40,39 +43,43 @@ const RouteHandle = () => {
             
               }
             },
-              element: <BlogPage />,
+              element: <BlogPage  setTitle={setTitle} />,
              },
              {
               path: "/toys",
-                element: <AllToys />,
+                element: <AllToys  setTitle={setTitle} />,
+             },
+             {
+              path: "/toy/:id",
+                element:<PrivateRoute><SingleToy  setTitle={setTitle} /></PrivateRoute> ,
              },
              {
               path: "/mytoys",
-                element: <MyToys />,
+                element: <PrivateRoute><MyToys  setTitle={setTitle} /></PrivateRoute> ,
              },
               {
               path: "/addtoy",
-                element: <AddAToyPage />,
+                element: <PrivateRoute><AddAToyPage  setTitle={setTitle} /></PrivateRoute> ,
              },
              {
               path: "/updatetoy/:id",
-             element:  <UpdateToyPage/> ,
+             element:  <PrivateRoute><UpdateToyPage  setTitle={setTitle} /></PrivateRoute>   ,
          },
              {
               path: "/login",
-             element:<RestictedPublicRoute> <LoginPage/></RestictedPublicRoute>,
+             element:<RestictedPublicRoute> <LoginPage setTitle={setTitle}/></RestictedPublicRoute>,
          }
         ]
       } 
         , {
           path: "/register",
-         element:<RestictedPublicRoute> <RegisterPage/></RestictedPublicRoute>,
+         element:<RestictedPublicRoute> <RegisterPage setTitle={setTitle}/></RestictedPublicRoute>,
      }
         
         ,
         {
           path: "*",
-         element:<ErrorPage/>,
+         element:<ErrorPage setTitle={setTitle} />,
      }
        
        
